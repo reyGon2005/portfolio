@@ -1,16 +1,197 @@
 ---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 
+// Componentes React
+import Squares from '../components/react/Squares.jsx';
+import SplitText from '../components/react/SplitText.jsx';
+import GradientText from '../components/react/GradientText.jsx';
+import TiltedCard from '../components/react/TiltedCard.jsx';
+
+// Datos
+const techStack = {
+  frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Bootstrap", "Tailwind"],
+  backend: ["MySQL", "MongoDB", "Django"],
+  tools: ["Git", "GitHub", "Postman", "Scrum"]
+};
+
+const projects = [
+  {
+  title: "SaaS para Doctores",
+  desc: "Plataforma SaaS para la gestión de pacientes, citas y control financiero, diseñada para optimizar los procesos internos de una consulta médica.",
+  tag: "Fullstack",
+  techs: ["HTML", "CSS", "React", "TypeScript", "Bootstrap", "Firebase", "Zustand"],
+  link: "https://clinicproweb.netlify.app",
+  image: "/home.png"
+},
+{ 
+  title: "Web Aplication", 
+  desc: "Plataforma digital que permite mostrar el menú de forma interactiva y gestionar reservas en línea, mejorando la experiencia del cliente y la organización del negocio.", 
+  tag: "Desktop",
+  techs: ["HTML", "CSS", "JavaScript", "Bootstrap", "Django"], 
+  link:"",
+	image: "/res.png"
+},
+{ 
+  title: "Landing Page", 
+  desc: "Landing page para un doctor estético, enfocada en presencia digital, captación de clientes y presentación de servicios.", 
+  tag: "Frontend", 
+  techs: ["HTML", "CSS", "JavaScript", "Bootstrap"], 
+  link: "https://drjair.netlify.app" ,
+  image: "/landing.png"
+},
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Reynaldo Gonzalez - Web Developer">
+  
+  <Navbar />
+
+  <section id="yo" class="position-relative d-flex align-items-center justify-content-center overflow-hidden" style="height: 100vh;">
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark z-0">
+      <Squares 
+        client:load 
+        direction="diagonal" 
+        speed={0.3} 
+        borderColor="#333" 
+        hoverFillColor="#547792" 
+      />
+    </div>
+
+    <div class="container position-relative z-1 text-center">
+      <h1 class="display-1 fw-bold text-white mb-2" style="letter-spacing: -2px;">
+        <SplitText text="Reynaldo González" client:load />
+      </h1>
+      <h2 class="display-5 fw-light text-white mb-4">
+        <GradientText client:load>Web Developer</GradientText>
+      </h2>
+      <div class="mt-5 reveal">
+        <a href="/cv_reynaldo.pdf" download class="btn btn-outline-light rounded-pill px-5 py-3 fw-bold tracking-wide">
+          Descargar CV <i class="ph ph-download-simple ms-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-5" style="background-color: var(--cp-beige);">
+    <div class="container py-5">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-5">
+          <div class="mx-auto" style="max-width: 400px;">
+            <TiltedCard 
+              imageSrc="/mifoto.jpg" 
+              altText="Foto de Reynaldo" 
+              client:visible 
+            />
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <h2 class="display-4 fw-bold text-dark-blue mb-4">¿Quién soy?</h2>
+          <p class="lead text-secondary mb-4">
+            ¡Hola! Soy un desarrollador web en formación, apasionado por crear proyectos con propósito. Me enfoco en los detalles y en construir experiencias que conecten con las personas, no solo productos. Siempre busco mejorar, aprender y ofrecer soluciones cada vez más sólidas y funcionales.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tech" class="py-5 bg-white">
+    <div class="container py-5">
+      <div class="text-center mb-5 reveal">
+        <h2 class="fw-bold text-dark-blue">Tecnologías</h2>
+        <p class="text-muted">Herramientas que domino para construir el futuro.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4 reveal">
+          <div class="p-4 rounded-4 bg-light h-100 border-0 shadow-sm">
+            <h3 class="h5 fw-bold text-medium-blue mb-4"><i class="ph ph-desktop me-2"></i> Frontend</h3>
+            <div class="d-flex flex-wrap gap-2">
+              {techStack.frontend.map(tech => <span class="badge bg-white text-dark border shadow-sm py-2 px-3 fw-normal">{tech}</span>)}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal" style="transition-delay: 0.1s">
+          <div class="p-4 rounded-4 bg-light h-100 border-0 shadow-sm">
+            <h3 class="h5 fw-bold text-medium-blue mb-4"><i class="ph ph-database me-2"></i> Backend</h3>
+            <div class="d-flex flex-wrap gap-2">
+              {techStack.backend.map(tech => <span class="badge bg-white text-dark border shadow-sm py-2 px-3 fw-normal">{tech}</span>)}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal" style="transition-delay: 0.2s">
+          <div class="p-4 rounded-4 bg-light h-100 border-0 shadow-sm">
+            <h3 class="h5 fw-bold text-medium-blue mb-4"><i class="ph ph-wrench me-2"></i> Herramientas</h3>
+            <div class="d-flex flex-wrap gap-2">
+              {techStack.tools.map(tech => <span class="badge bg-white text-dark border shadow-sm py-2 px-3 fw-normal">{tech}</span>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-5" style="background-color: #f8f9fa;">
+    <div class="container py-5">
+      <div class="d-flex justify-content-between align-items-end mb-5 reveal">
+        <div>
+          <h2 class="fw-bold text-dark-blue">Proyectos Destacados</h2>
+          <p class="text-muted mb-0">Una selección de mis trabajos recientes.</p>
+        </div>
+        <a href="https://github.com" target="_blank" class="btn btn-outline-dark rounded-pill">Ver GitHub</a>
+      </div>
+
+      <div class="row g-4">
+  {projects.map((project, i) => (
+    <div class="col-md-4 reveal" style={`transition-delay: ${i * 0.1}s`}>
+      <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden project-card hover-lift">
+        
+        <div style="height: 220px; overflow: hidden; background-color: #f0f0f0;">
+          <img 
+              src={project.image} 
+              alt={`Captura de ${project.title}`} 
+              class="w-100 h-100 object-fit-cover"
+              loading="lazy"
+          />
+        </div>
+
+        <div class="card-body p-4 d-flex flex-column">
+          <div>
+            <span class="badge bg-primary bg-opacity-10 text-primary mb-2">{project.tag}</span>
+            <h4 class="h5 fw-bold mb-2">{project.title}</h4>
+            <p class="text-muted small mb-3">{project.desc}</p>
+          </div>
+
+          <div class="d-flex flex-wrap gap-1 mb-4 mt-auto">
+            {project.techs.map(t => (
+              <span class="badge bg-light text-dark border fw-normal" style="font-size: 0.7rem;">
+                {t}
+              </span>
+            ))}
+          </div>
+
+          {/* CONDICIONAL: Solo muestra el botón si project.link tiene valor */}
+          {project.link && (
+            <a href={project.link} target="_blank" class="text-decoration-none fw-bold text-dark-blue stretched-link">
+              Ver Proyecto <i class="ph ph-arrow-right"></i>
+            </a>
+          )}
+          
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+    </div>
+  </section>
+
+  <Footer />
+
+</Layout>
+
+<style>
+  .hover-lift { transition: transform 0.3s ease; }
+  .hover-lift:hover { transform: translateY(-5px); }
+</style>
