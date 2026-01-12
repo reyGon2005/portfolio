@@ -14,7 +14,7 @@ import TiltedCard from '../components/react/TiltedCard.jsx';
 const techStack = {
   frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Bootstrap", "Tailwind"],
   backend: ["MySQL", "MongoDB", "Django"],
-  tools: ["Git", "GitHub", "Postman", "Scrum"]
+  tools: ["Git", "GitHub", "Postman", "Scrum", "N8N"]
 };
 
 const projects = [
@@ -64,10 +64,17 @@ const projects = [
       <h1 class="display-1 fw-bold text-white mb-2" style="letter-spacing: -2px;">
         <SplitText text="Reynaldo González" client:load />
       </h1>
-      <h2 class="display-5 fw-light text-white mb-4">
+      
+      <h2 class="display-5 fw-light text-white mb-3">
         <GradientText client:load>Web Developer</GradientText>
       </h2>
-      <div class="mt-5 reveal">
+
+      <div class="text-white-50 fs-5 mb-5 d-flex align-items-center justify-content-center gap-2">
+        <i class="ph ph-envelope-simple"></i>
+        <span style="user-select: all;">reynaldo.gonzalez@correo.com</span> 
+      </div>
+
+      <div class="reveal">
         <a href="/cv_reynaldo.pdf" download class="btn btn-outline-light rounded-pill px-5 py-3 fw-bold tracking-wide">
           Descargar CV <i class="ph ph-download-simple ms-2"></i>
         </a>
